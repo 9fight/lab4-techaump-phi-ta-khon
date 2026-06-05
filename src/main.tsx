@@ -521,7 +521,7 @@ function DetectorPanel() {
 
         </div>
 
-        <div className="rounded-[18px] border border-[rgba(224,242,254,0.20)] bg-[#12182a]/72 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+        <div className="rounded-[18px] border border-[rgba(125,151,255,0.14)] bg-[#12182a]/72 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]">
           <div className="mb-5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <span className="h-6 w-1 rounded-full bg-violet-400" />
@@ -571,7 +571,7 @@ function DetectorPanel() {
             <StatusMessage status={status} message={message} />
 
             <button
-              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-[#071021] shadow-[0_0_30px_rgba(45,212,191,0.18)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-55 ${tone.button}`}
+              className={`detect-neon-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-[#071021] shadow-[0_0_30px_rgba(45,212,191,0.18)] transition hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:saturate-75 ${tone.button}`}
               disabled={status === "loading" || !imageSource}
               onClick={() => void runDetection()}
               type="button"
@@ -693,9 +693,9 @@ function getStatusTone(status: DetectionStatus) {
       bar: "bg-gradient-to-r from-cyan-400 to-sky-300",
       button: "bg-gradient-to-r from-amber-400 to-cyan-400",
       dot: "bg-cyan-300",
-      message: "border-cyan-300/18 bg-cyan-300/[0.055]",
-      panel: "border-cyan-300/18",
-      preview: "border-cyan-300/24",
+      message: "border-[rgba(103,232,249,0.18)] bg-cyan-300/[0.055]",
+      panel: "border-[rgba(103,232,249,0.18)]",
+      preview: "border-[rgba(103,232,249,0.24)]",
       text: "text-cyan-300",
     },
     loading: {
@@ -711,36 +711,36 @@ function getStatusTone(status: DetectionStatus) {
       bar: "bg-gradient-to-r from-emerald-300 to-cyan-300",
       button: "bg-gradient-to-r from-emerald-300 to-cyan-300",
       dot: "bg-emerald-300",
-      message: "border-emerald-300/24 bg-emerald-300/[0.07]",
-      panel: "border-emerald-300/24 shadow-[0_0_30px_rgba(52,211,153,0.09)]",
-      preview: "border-emerald-300/30",
+      message: "border-[rgba(110,231,183,0.24)] bg-emerald-300/[0.07]",
+      panel: "border-[rgba(110,231,183,0.24)] shadow-[0_0_30px_rgba(52,211,153,0.09)]",
+      preview: "border-[rgba(110,231,183,0.30)]",
       text: "text-emerald-300",
     },
     warning: {
       bar: "bg-gradient-to-r from-amber-300 to-orange-400",
       button: "bg-gradient-to-r from-amber-300 to-orange-400",
       dot: "bg-amber-300",
-      message: "border-amber-300/26 bg-amber-300/[0.075]",
-      panel: "border-amber-300/24 shadow-[0_0_30px_rgba(251,191,36,0.09)]",
-      preview: "border-amber-300/32",
+      message: "border-[rgba(252,211,77,0.26)] bg-amber-300/[0.075]",
+      panel: "border-[rgba(252,211,77,0.24)] shadow-[0_0_30px_rgba(251,191,36,0.09)]",
+      preview: "border-[rgba(252,211,77,0.32)]",
       text: "text-amber-300",
     },
     error: {
       bar: "bg-gradient-to-r from-red-400 to-rose-400",
       button: "bg-gradient-to-r from-red-300 to-orange-300",
       dot: "bg-red-300",
-      message: "border-red-300/26 bg-red-300/[0.075]",
-      panel: "border-red-300/24 shadow-[0_0_30px_rgba(248,113,113,0.09)]",
-      preview: "border-red-300/30",
+      message: "border-[rgba(252,165,165,0.26)] bg-red-300/[0.075]",
+      panel: "border-[rgba(252,165,165,0.24)] shadow-[0_0_30px_rgba(248,113,113,0.09)]",
+      preview: "border-[rgba(252,165,165,0.30)]",
       text: "text-red-300",
     },
     "waiting-api": {
       bar: "bg-gradient-to-r from-amber-300 to-orange-400",
       button: "bg-gradient-to-r from-amber-300 to-orange-400",
       dot: "bg-amber-300",
-      message: "border-amber-300/26 bg-amber-300/[0.075]",
-      panel: "border-amber-300/22",
-      preview: "border-amber-300/28",
+      message: "border-[rgba(252,211,77,0.26)] bg-amber-300/[0.075]",
+      panel: "border-[rgba(252,211,77,0.22)]",
+      preview: "border-[rgba(252,211,77,0.28)]",
       text: "text-amber-300",
     },
   };
