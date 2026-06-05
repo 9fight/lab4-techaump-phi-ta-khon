@@ -352,20 +352,25 @@ function DetectorPanel() {
 
   function handleUrlSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const cleanUrl = imageUrlInput.trim();
-    if (!/^https?:\/\/.+/i.test(cleanUrl)) {
+    applyImageUrl(imageUrlInput.trim());
+  }
+
+  function applyImageUrl(value: string) {
+    const cleanUrl = value.trim();
+    const resolvedUrl = resolveImageUrl(cleanUrl);
+    if (!resolvedUrl) {
       setStatus("error");
-      setMessage("กรุณาใส่ URL รูปภาพที่ขึ้นต้นด้วย http:// หรือ https://");
+      setMessage("กรุณาใส่ URL รูปภาพ เช่น https://example.com/image.jpg หรือ /assets/sample-upload-thumbnails.png");
       return;
     }
 
-    setImageSource(cleanUrl);
+    setImageSource(resolvedUrl);
     setBase64Image("");
     setFileName("");
     setImageKind("url");
     setResult(null);
     setStatus("ready");
-    setMessage("พร้อมตรวจจับจาก URL รูปภาพ");
+    setMessage(resolvedUrl.startsWith("https://") ? "พร้อมตรวจจับจาก URL รูปภาพ" : "พร้อมตรวจจับจาก URL ภายในเว็บ ระบบจะแปลงเป็น base64 ก่อนส่ง");
   }
 
   async function runDetection() {
@@ -383,7 +388,7 @@ function DetectorPanel() {
 
     try {
       setStatus("loading");
-      setMessage("กำลังส่งภาพไปยัง Roboflow...");
+      setMessage(imageKind === "url" && !imageSource.startsWith("https://") ? "กำลังโหลดรูปจาก URL แล้วแปลงเป็น base64..." : "กำลังส่งภาพไปยัง Roboflow...");
       const data = await inferWithRoboflow({
         imageKind,
         imageUrl: imageSource,
@@ -484,7 +489,13 @@ function DetectorPanel() {
 
             <div id="gallery" className="mt-6 scroll-mt-28 border-t border-white/10 pt-5">
               <p className="mb-4 text-center text-sm text-slate-400">หรือลองด้วยภาพตัวอย่าง</p>
-              <img className="h-24 w-full rounded-2xl border border-white/10 object-cover object-center" src={assets.thumbs} alt="ภาพตัวอย่างหน้ากากผีตาโขน" />
+              <button
+                className="block w-full overflow-hidden rounded-2xl border border-white/10 transition hover:border-cyan-300/40 hover:brightness-110"
+                onClick={() => applyImageUrl(assets.thumbs)}
+                type="button"
+              >
+                <img className="h-24 w-full object-cover object-center" src={assets.thumbs} alt="ภาพตัวอย่างหน้ากากผีตาโขน" />
+              </button>
             </div>
           </div>
 
@@ -897,14 +908,15 @@ async function inferWithRoboflow({
   base64Image: string;
 }) {
   const endpoint = `${roboflowConfig.apiUrl.replace(/\/$/, "")}/${roboflowConfig.modelId}?api_key=${encodeURIComponent(roboflowConfig.apiKey ?? "")}`;
-  const response =
-    imageKind === "url"
-      ? await fetch(`${endpoint}&image=${encodeURIComponent(imageUrl)}`, { method: "POST" })
-      : await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: base64Image,
-        });
+  const shouldSendUrl = imageKind === "url" && imageUrl.startsWith("https://");
+  const imageBody = imageKind === "url" && !shouldSendUrl ? await imageUrlToBase64(imageUrl) : base64Image;
+  const response = shouldSendUrl
+    ? await fetch(`${endpoint}&image=${encodeURIComponent(imageUrl)}`, { method: "POST" })
+    : await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: imageBody,
+      });
 
   if (!response.ok) {
     const text = await response.text();
@@ -914,7 +926,35 @@ async function inferWithRoboflow({
   return (await response.json()) as RoboflowResponse;
 }
 
+function resolveImageUrl(value: string) {
+  if (!value) return "";
+
+  try {
+    return new URL(value, window.location.origin).href;
+  } catch {
+    return "";
+  }
+}
+
+async function imageUrlToBase64(imageUrl: string) {
+  try {
+    const response = await fetch(imageUrl);
+    if (!response.ok) throw new Error(`โหลดรูปไม่สำเร็จ (${response.status})`);
+
+    const blob = await response.blob();
+    if (!blob.type.startsWith("image/")) throw new Error("URL นี้ไม่ได้ชี้ไปที่ไฟล์รูปภาพ");
+    return await blobToBase64(blob);
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "ไม่ทราบสาเหตุ";
+    throw new Error(`โหลดรูปจาก URL เพื่อแปลงเป็น base64 ไม่สำเร็จ: ${reason}`);
+  }
+}
+
 function fileToBase64(file: File) {
+  return blobToBase64(file);
+}
+
+function blobToBase64(blob: Blob) {
   return new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
@@ -922,7 +962,7 @@ function fileToBase64(file: File) {
       resolve(result.includes(",") ? result.split(",")[1] : result);
     };
     reader.onerror = () => reject(new Error("อ่านไฟล์รูปภาพไม่สำเร็จ"));
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(blob);
   });
 }
 
