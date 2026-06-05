@@ -571,7 +571,7 @@ function DetectorPanel() {
             <StatusMessage status={status} message={message} />
 
             <button
-              className={`detect-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-[#071021] shadow-[0_0_30px_rgba(45,212,191,0.18)] transition hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-55 ${tone.button}`}
+              className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3 font-bold text-[#071021] shadow-[0_0_30px_rgba(45,212,191,0.18)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-55 ${tone.button}`}
               disabled={status === "loading" || !imageSource}
               onClick={() => void runDetection()}
               type="button"
