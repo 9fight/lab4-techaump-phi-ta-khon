@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: "Noto Sans Thai", Inter, system-ui, sans-serif;
+  background: #030714;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #030714;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-active {
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav-active::after {
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  width: 42px;
+  height: 2px;
+  content: "";
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #facc15, transparent);
+  box-shadow: 0 0 18px rgba(250, 204, 21, 0.75);
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+}
