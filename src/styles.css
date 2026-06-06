@@ -50,44 +50,6 @@ a {
   transform: none;
 }
 
-.detect-neon-button {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  border: 1px solid rgba(103, 232, 249, 0.26);
-}
-
-.detect-neon-button::before {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  content: "";
-  pointer-events: none;
-  border-radius: inherit;
-  padding: 2px;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 34deg,
-    rgba(34, 211, 238, 0.96) 58deg,
-    rgba(250, 204, 21, 0.98) 76deg,
-    rgba(34, 211, 238, 0.96) 96deg,
-    transparent 122deg,
-    transparent 360deg
-  );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  animation: detect-neon-spin 2.15s linear infinite;
-}
-
-@keyframes detect-neon-spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
 ::selection {
   background: rgba(56, 189, 248, 0.28);
 }
