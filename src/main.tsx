@@ -201,7 +201,7 @@ function Header() {
           ))}
         </nav>
 
-        <div className="hidden shrink-0 items-center gap-3 rounded-2xl border border-amber-200/16 bg-[#0b1022]/70 px-5 py-3 text-sm font-semibold text-amber-100 shadow-[0_0_28px_rgba(245,158,11,0.14)] backdrop-blur lg:flex">
+        <div className="hidden shrink-0 items-center gap-3 rounded-2xl border border-amber-200/28 bg-[#0b1022]/70 px-5 py-3 text-sm font-semibold text-amber-100 shadow-[0_0_28px_rgba(245,158,11,0.14)] backdrop-blur lg:flex">
           <span className={isRoboflowReady ? "size-2.5 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.75)]" : "size-2.5 rounded-full bg-amber-300 shadow-[0_0_14px_rgba(252,211,77,0.75)]"} />
           {isRoboflowReady ? "Roboflow พร้อมใช้งาน" : "รอ Roboflow API"}
         </div>
@@ -222,7 +222,7 @@ function Header() {
           {navItems.map((item) => (
             <NavLinkItem activeSection={activeSection} item={item} key={item.href} mobile onNavigate={navigateTo} />
           ))}
-          <div className="mt-2 inline-flex w-fit items-center gap-3 rounded-xl border border-amber-200/14 bg-[#0b1022]/70 px-4 py-2 text-xs font-semibold text-amber-100">
+          <div className="mt-2 inline-flex w-fit items-center gap-3 rounded-xl border border-amber-200/24 bg-[#0b1022]/70 px-4 py-2 text-xs font-semibold text-amber-100">
             <span className={isRoboflowReady ? "size-2 rounded-full bg-emerald-300" : "size-2 rounded-full bg-amber-300"} />
             {isRoboflowReady ? "Roboflow พร้อมใช้งาน" : "รอ Roboflow API"}
           </div>
@@ -270,7 +270,7 @@ function Hero() {
         transition={{ duration: 0.7 }}
         className="relative z-10 max-w-2xl pt-14"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/16 bg-violet-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-300 shadow-glow">
+        <div className="inline-flex items-center gap-2 rounded-full border border-violet-400/25 bg-violet-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-300 shadow-glow">
           <BadgeCheck className="size-4 text-violet-300" />
           AI Powered Detection
         </div>
@@ -421,10 +421,10 @@ function DetectorPanel() {
 
   return (
     <section id="detector" className="relative z-10 mx-auto w-full max-w-7xl scroll-mt-24 px-5 pb-12 lg:px-8">
-      <div className="grid gap-8 rounded-[18px] border border-[rgba(186,230,253,0.11)] bg-[#070c1b]/78 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_0_60px_rgba(59,130,246,0.12)] backdrop-blur-2xl lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
+      <div className="grid gap-8 rounded-[18px] border border-[rgba(186,230,253,0.16)] bg-[#070c1b]/78 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_0_60px_rgba(59,130,246,0.12)] backdrop-blur-2xl lg:grid-cols-[0.95fr_1.05fr] lg:p-8">
         <div className="space-y-5">
           <div
-            className={`rounded-[18px] border border-dashed p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition ${dragActive ? "border-[rgba(103,232,249,0.22)] bg-cyan-400/10" : "border-[rgba(199,210,254,0.16)] bg-[#050a18]/72"}`}
+            className={`rounded-[18px] border border-dashed p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition ${dragActive ? "border-[rgba(103,232,249,0.55)] bg-cyan-400/10" : "border-[rgba(199,210,254,0.30)] bg-[#050a18]/72"}`}
             onDragEnter={(event) => {
               event.preventDefault();
               setDragActive(true);
@@ -445,12 +445,12 @@ function DetectorPanel() {
               onChange={(event) => void handleFile(event.target.files?.[0])}
             />
 
-            <div className="grid min-h-[300px] place-items-center overflow-hidden rounded-[16px] border border-[rgba(224,242,254,0.14)] bg-[#071021]/82 bg-[radial-gradient(circle_at_center,rgba(91,56,255,0.13),transparent_48%)] text-center shadow-[inset_0_0_34px_rgba(89,70,255,0.06)]">
+            <div className="grid min-h-[300px] place-items-center overflow-hidden rounded-[16px] border border-[rgba(224,242,254,0.24)] bg-[#071021]/82 bg-[radial-gradient(circle_at_center,rgba(91,56,255,0.13),transparent_48%)] text-center shadow-[inset_0_0_34px_rgba(89,70,255,0.06)]">
               {imageSource ? (
                 <img className="h-full max-h-[360px] w-full rounded-2xl object-contain" src={imageSource} alt="ภาพที่เลือกสำหรับตรวจจับ" />
               ) : (
                 <div className="px-4 py-10">
-                  <div className="mx-auto grid size-20 place-items-center rounded-2xl border border-violet-400/14 bg-violet-500/12 shadow-glow">
+                  <div className="mx-auto grid size-20 place-items-center rounded-2xl border border-violet-400/35 bg-violet-500/12 shadow-glow">
                     <ImagePlus className="size-10 text-violet-300" />
                   </div>
                   <h2 className="mt-7 text-2xl font-bold">อัปโหลดภาพเพื่อเริ่มการตรวจจับ</h2>
@@ -471,7 +471,7 @@ function DetectorPanel() {
                 เลือกไฟล์ภาพ
               </button>
               <button
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/12 bg-[#080d1c]/80 px-5 py-3 font-semibold text-slate-300 transition hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-[#080d1c]/80 px-5 py-3 font-semibold text-slate-300 transition hover:bg-white/10"
                 onClick={resetImage}
                 type="button"
               >
@@ -490,7 +490,7 @@ function DetectorPanel() {
             <div id="gallery" className="mt-6 scroll-mt-28 border-t border-white/10 pt-5">
               <p className="mb-4 text-center text-sm text-slate-400">หรือลองด้วยภาพตัวอย่าง</p>
               <button
-                className="block w-full overflow-hidden rounded-2xl border border-white/10 transition hover:border-cyan-300/16 hover:brightness-110"
+                className="block w-full overflow-hidden rounded-2xl border border-white/10 transition hover:border-cyan-300/40 hover:brightness-110"
                 onClick={() => applyImageUrl(assets.thumbs)}
                 type="button"
               >
@@ -499,7 +499,7 @@ function DetectorPanel() {
             </div>
           </div>
 
-          <form className="rounded-[18px] border border-[rgba(224,242,254,0.13)] bg-[#050a18]/74 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]" onSubmit={handleUrlSubmit}>
+          <form className="rounded-[18px] border border-[rgba(224,242,254,0.22)] bg-[#050a18]/74 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.035)]" onSubmit={handleUrlSubmit}>
             <label className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-200" htmlFor="image-url">
               <Link className="size-4 text-cyan-300" />
               ใส่ที่อยู่รูปภาพ
@@ -507,7 +507,7 @@ function DetectorPanel() {
             <div className="flex flex-col gap-3 sm:flex-row">
               <input
                 id="image-url"
-                className="min-h-12 flex-1 rounded-xl border border-white/10 bg-[#060b17] px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/28"
+                className="min-h-12 flex-1 rounded-xl border border-white/15 bg-[#060b17] px-4 text-sm text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-300/70"
                 onChange={(event) => setImageUrlInput(event.target.value)}
                 placeholder="https://example.com/image.jpg"
                 type="url"
@@ -655,14 +655,14 @@ function PredictionBox({
 
 function StatusPill({ status }: { status: string }) {
   const config = {
-    idle: { text: "รอรูป", color: "border-slate-500/18 bg-slate-500/10 text-slate-300" },
-    ready: { text: "พร้อมตรวจ", color: "border-cyan-300/18 bg-cyan-300/10 text-cyan-200" },
-    loading: { text: "กำลังตรวจ", color: "border-amber-300/18 bg-amber-300/10 text-amber-200" },
-    success: { text: "สำเร็จ", color: "border-emerald-300/18 bg-emerald-300/10 text-emerald-200" },
-    warning: { text: "ไม่พบ", color: "border-amber-300/18 bg-amber-300/10 text-amber-200" },
-    error: { text: "ผิดพลาด", color: "border-red-300/18 bg-red-300/10 text-red-200" },
-    "waiting-api": { text: "รอ API", color: "border-amber-300/18 bg-amber-300/10 text-amber-200" },
-  }[status] ?? { text: "พร้อม", color: "border-slate-500/18 bg-slate-500/10 text-slate-300" };
+    idle: { text: "รอรูป", color: "border-slate-500/30 bg-slate-500/10 text-slate-300" },
+    ready: { text: "พร้อมตรวจ", color: "border-cyan-300/30 bg-cyan-300/10 text-cyan-200" },
+    loading: { text: "กำลังตรวจ", color: "border-amber-300/30 bg-amber-300/10 text-amber-200" },
+    success: { text: "สำเร็จ", color: "border-emerald-300/30 bg-emerald-300/10 text-emerald-200" },
+    warning: { text: "ไม่พบ", color: "border-amber-300/30 bg-amber-300/10 text-amber-200" },
+    error: { text: "ผิดพลาด", color: "border-red-300/30 bg-red-300/10 text-red-200" },
+    "waiting-api": { text: "รอ API", color: "border-amber-300/30 bg-amber-300/10 text-amber-200" },
+  }[status] ?? { text: "พร้อม", color: "border-slate-500/30 bg-slate-500/10 text-slate-300" };
 
   return <span className={`rounded-full border px-3 py-1 text-xs font-semibold ${config.color}`}>{config.text}</span>;
 }
@@ -685,62 +685,62 @@ function getStatusTone(status: DetectionStatus) {
       button: "bg-gradient-to-r from-amber-400 to-cyan-400",
       dot: "bg-slate-300",
       message: "border-white/10 bg-white/[0.035]",
-      panel: "border-[rgba(224,242,254,0.12)]",
-      preview: "border-[rgba(186,230,253,0.14)]",
+      panel: "border-[rgba(224,242,254,0.20)]",
+      preview: "border-[rgba(186,230,253,0.24)]",
       text: "text-cyan-300",
     },
     ready: {
       bar: "bg-gradient-to-r from-cyan-400 to-sky-300",
       button: "bg-gradient-to-r from-amber-400 to-cyan-400",
       dot: "bg-cyan-300",
-      message: "border-[rgba(103,232,249,0.12)] bg-cyan-300/[0.055]",
-      panel: "border-[rgba(103,232,249,0.12)]",
-      preview: "border-[rgba(103,232,249,0.16)]",
+      message: "border-[rgba(103,232,249,0.18)] bg-cyan-300/[0.055]",
+      panel: "border-[rgba(103,232,249,0.18)]",
+      preview: "border-[rgba(103,232,249,0.24)]",
       text: "text-cyan-300",
     },
     loading: {
       bar: "bg-gradient-to-r from-amber-300 to-orange-400",
       button: "bg-gradient-to-r from-amber-400 to-cyan-400",
       dot: "bg-amber-300",
-      message: "border-[rgba(252,211,77,0.14)] bg-amber-300/[0.055]",
-      panel: "border-[rgba(252,211,77,0.14)]",
-      preview: "border-[rgba(252,211,77,0.17)]",
+      message: "border-amber-300/20 bg-amber-300/[0.055]",
+      panel: "border-amber-300/20",
+      preview: "border-amber-300/25",
       text: "text-amber-300",
     },
     success: {
       bar: "bg-gradient-to-r from-emerald-300 to-cyan-300",
       button: "bg-gradient-to-r from-emerald-300 to-cyan-300",
       dot: "bg-emerald-300",
-      message: "border-[rgba(110,231,183,0.15)] bg-emerald-300/[0.07]",
-      panel: "border-[rgba(110,231,183,0.15)] shadow-[0_0_30px_rgba(52,211,153,0.07)]",
-      preview: "border-[rgba(110,231,183,0.18)]",
+      message: "border-[rgba(110,231,183,0.24)] bg-emerald-300/[0.07]",
+      panel: "border-[rgba(110,231,183,0.24)] shadow-[0_0_30px_rgba(52,211,153,0.09)]",
+      preview: "border-[rgba(110,231,183,0.30)]",
       text: "text-emerald-300",
     },
     warning: {
       bar: "bg-gradient-to-r from-amber-300 to-orange-400",
       button: "bg-gradient-to-r from-amber-300 to-orange-400",
       dot: "bg-amber-300",
-      message: "border-[rgba(252,211,77,0.16)] bg-amber-300/[0.075]",
-      panel: "border-[rgba(252,211,77,0.15)] shadow-[0_0_30px_rgba(251,191,36,0.07)]",
-      preview: "border-[rgba(252,211,77,0.19)]",
+      message: "border-[rgba(252,211,77,0.26)] bg-amber-300/[0.075]",
+      panel: "border-[rgba(252,211,77,0.24)] shadow-[0_0_30px_rgba(251,191,36,0.09)]",
+      preview: "border-[rgba(252,211,77,0.32)]",
       text: "text-amber-300",
     },
     error: {
       bar: "bg-gradient-to-r from-red-400 to-rose-400",
       button: "bg-gradient-to-r from-red-300 to-orange-300",
       dot: "bg-red-300",
-      message: "border-[rgba(252,165,165,0.16)] bg-red-300/[0.075]",
-      panel: "border-[rgba(252,165,165,0.15)] shadow-[0_0_30px_rgba(248,113,113,0.07)]",
-      preview: "border-[rgba(252,165,165,0.18)]",
+      message: "border-[rgba(252,165,165,0.26)] bg-red-300/[0.075]",
+      panel: "border-[rgba(252,165,165,0.24)] shadow-[0_0_30px_rgba(248,113,113,0.09)]",
+      preview: "border-[rgba(252,165,165,0.30)]",
       text: "text-red-300",
     },
     "waiting-api": {
       bar: "bg-gradient-to-r from-amber-300 to-orange-400",
       button: "bg-gradient-to-r from-amber-300 to-orange-400",
       dot: "bg-amber-300",
-      message: "border-[rgba(252,211,77,0.16)] bg-amber-300/[0.075]",
-      panel: "border-[rgba(252,211,77,0.14)]",
-      preview: "border-[rgba(252,211,77,0.17)]",
+      message: "border-[rgba(252,211,77,0.26)] bg-amber-300/[0.075]",
+      panel: "border-[rgba(252,211,77,0.22)]",
+      preview: "border-[rgba(252,211,77,0.28)]",
       text: "text-amber-300",
     },
   };
@@ -810,10 +810,10 @@ function InfoSections() {
 function ModelReport() {
   return (
     <section id="model-report" className="mx-auto w-full max-w-7xl scroll-mt-28 px-5 pb-12 lg:px-8">
-      <div className="rounded-[18px] border border-[rgba(186,230,253,0.11)] bg-[#070c1b]/78 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_0_60px_rgba(59,130,246,0.10)] backdrop-blur-2xl lg:p-8">
+      <div className="rounded-[18px] border border-[rgba(186,230,253,0.16)] bg-[#070c1b]/78 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.035),0_0_60px_rgba(59,130,246,0.10)] backdrop-blur-2xl lg:p-8">
         <div className="mb-7 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-300/12 bg-cyan-300/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-300/18 bg-cyan-300/[0.06] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
               <BarChart3 className="size-4" />
               Roboflow Training Report
             </div>
@@ -824,7 +824,7 @@ function ModelReport() {
               ข้อมูลนี้ดึงจาก Roboflow project version 2 สำหรับใช้ประกอบรายงาน คะแนนบนชุด validation/test อาจสูงเพราะจำนวนรูปยังไม่มาก
             </p>
           </div>
-          <div className="rounded-2xl border border-emerald-300/12 bg-emerald-300/[0.06] px-4 py-3 text-sm font-semibold text-emerald-200">
+          <div className="rounded-2xl border border-emerald-300/18 bg-emerald-300/[0.06] px-4 py-3 text-sm font-semibold text-emerald-200">
             Model endpoint: pee-ta-khon-h4wug/2
           </div>
         </div>
@@ -840,7 +840,7 @@ function ModelReport() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {trainingFacts.map((fact) => (
-            <div className="rounded-2xl border border-[rgba(224,242,254,0.11)] bg-[#050a18]/78 p-5" key={fact.label}>
+            <div className="rounded-2xl border border-[rgba(224,242,254,0.16)] bg-[#050a18]/78 p-5" key={fact.label}>
               <Database className="mb-4 size-6 text-violet-300" />
               <p className="text-sm text-slate-400">{fact.label}</p>
               <p className="mt-2 text-xl font-bold text-white">{fact.value}</p>
@@ -850,7 +850,7 @@ function ModelReport() {
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-2xl border border-cyan-300/12 bg-cyan-300/[0.055] p-5">
+          <div className="rounded-2xl border border-cyan-300/18 bg-cyan-300/[0.055] p-5">
             <div className="flex items-start gap-3">
               <Info className="mt-1 size-5 shrink-0 text-cyan-300" />
               <div>
@@ -862,7 +862,7 @@ function ModelReport() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-amber-300/14 bg-amber-300/[0.07] p-5">
+          <div className="rounded-2xl border border-amber-300/24 bg-amber-300/[0.07] p-5">
             <div className="flex items-start gap-3">
               <TriangleAlert className="mt-1 size-5 shrink-0 text-amber-300" />
               <div>
